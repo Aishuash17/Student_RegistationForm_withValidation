@@ -1,0 +1,44 @@
+*{
+    margin: 10px;
+    text-align: center;
+    background-color: pink;
+    color: black;
+
+}
+h1{
+    background-color: black;
+    color: white;
+}
+table, th, td {
+    border:1px solid black;
+  }
+#StudentForm{
+    margin-left : 40%;
+  } 
+#studentstable 
+{
+    margin: 30px;
+    margin-left : 38.5%; 
+}
+#Savbtn
+  {
+    background-color: palevioletred;
+    color: black;
+    border: none;
+    padding: 5px 10px; 
+    cursor: pointer; 
+  }
+#Savbtn:hover{
+    background-color: purple;
+}  
+.delete-button {
+    background-color: #ff0000; 
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px; 
+    cursor: pointer; 
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1>STUDENT REGISTRATION FORM</h1>
+<table id="StudentForm">
+     <tr><th>Name</th><td><input type="text" id="name" name="Name" placeholder="Enter your Name"></td></tr>
+    <br>
+    <tr><th>Age</th><td><input type="text" id="age" name="Age" placeholder="Enter your age"></td></tr>
+    <br>
+    <tr><th>Gender</th><td><input type="radio" id="male" name="gender" value="Male"><label for="male">Male</label><input type="radio" id="female" name="gender" value="Female"><label for="male">Female</label></td></tr>
+    <br>
+    <tr><th>Course</th><td><select name="course" id="course" title="Select a course">
+        <option value="Javascript">Javascript</option>
+        <option value="Java">Java</option>
+        <option value="Python">Python</option>
+        <option value="C#">C#</option>
+    </select></td></tr>
+    <br>
+    <tr><th>E-Mail</th><td><input type="email" id="email" name="E-mail" placeholder="Enter your Email"></td></tr>
+    <br>
+    <tr><td colspan="2"><button id="Savbtn" onclick="savestud()">Save</button></td></tr>
+</table>
+
+
+<table id="studentstable">
+    <thead>
+<tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Course</th>
+    <th>E-mail</th>
+    <th>Action</th>
+</tr>
+</thead>
+</table>
+
+<script>
+    function savestud()
+    {
+        var Name=document.getElementById("name").value;
+        var Age=document.getElementById("age").value;
+        var Gender = document.querySelector('input[name="gender"]:checked');
+        var courseSelect = document.getElementById("course");
+        var Course = courseSelect.options[courseSelect.selectedIndex].value;
+        var Email = document.getElementById("email").value;
+
+       // Validation
+
+    if(Name && Age && Gender && Course && Email === "")
+    {
+        alert("Please Fill all the Details Before submitting");
+        return;
+    }   
+
+
+    if (Name.trim() === "") {
+        alert("Please enter your name.");
+        return;
+    }
+
+    if (Age.trim() === "") {
+        alert("Please enter your age.");
+        return;
+    }
+
+    if (Gender === null) {
+        alert("Please select your gender.");
+        return;
+    }
+
+    if (Course === "") {
+        alert("Please select your course.");
+        return;
+    }
+
+    if (Email.trim() === "") {
+        alert("Please enter your email.");
+        return;
+    } else if (!isValidEmail(Email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+        var table=document.getElementById("studentstable");
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+
+        // Insert data from the form into cells
+        cell1.innerHTML = Name;
+        cell2.innerHTML = Age;
+        cell3.innerHTML = Gender.value;
+        cell4.innerHTML = Course;
+        cell5.innerHTML = Email;
+
+        var deleteBtn = document.createElement("button");
+            deleteBtn.innerHTML = "Delete";
+            deleteBtn.className = "delete-button"; // Assigning a class to the button
+            deleteBtn.onclick = function() {
+                table.deleteRow(row.rowIndex);
+            };
+            cell6.appendChild(deleteBtn);
+
+            // Clear input fields after saving
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.querySelector('input[name="gender"]:checked').checked = false;
+            document.getElementById("course").selectedIndex = 0;
+            document.getElementById("email").value = "";
+    }
+    function isValidEmail(email) {
+    // Regular expression for email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+      
+</script>
+</body>
+</html>
